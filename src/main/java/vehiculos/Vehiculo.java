@@ -1,19 +1,19 @@
 package vehiculos;
-import vehiculos.Fabricante;
+
 
 public class Vehiculo {
-	private String placa; 
-	private int puertas; 
-	private float velocidadMaxima; 
-	private String nombre; 
-	private float precio; 
-	private float peso;
-	private String traccion; 
-	private Fabricante fabricante;
+	protected String placa; 
+	protected int puertas; 
+	protected int velocidadMaxima; 
+	protected String nombre; 
+	protected int precio; 
+	protected float peso;
+	protected String traccion; 
+	protected Fabricante fabricante;
 	
-	private static int CantidadVehiculos;
+	private static int vehiculos = 0;
 	
-	public Vehiculo (String placa, int puertas, float velocidadMaxima, String nombre, float precio, float peso,
+	public Vehiculo (String placa, int puertas, int velocidadMaxima, String nombre, int precio, float peso,
 			String traccion, Fabricante fabricante) {
 		this.placa = placa;
 		this.puertas = puertas;
@@ -23,50 +23,44 @@ public class Vehiculo {
 		this.peso = peso;
 		this.traccion = traccion;
 		this.fabricante = fabricante;
-		Vehiculo.CantidadVehiculos = Vehiculo.CantidadVehiculos + 1;
+		vehiculos++;
+		fabricante.setContador();
+		fabricante.getPais().setContador();
+		Fabricante.getFabricantes().add(fabricante);
+		Pais.getPaises().add(fabricante.getPais());
 	}
-	
-	public String vehiculosPorTipo() {
-		return "Automoviles: " + Automovil.getCantidadAutomovil() + 
-				"\nCamionetas: " + Camioneta.getCantidadCamionetas() +
-				"\nCamiones: " + Camion.getCantidadCamiones();
-	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
 	public String getPlaca() {return placa;}
-	public void setPlaca(String x) {this.placa = x;}
+	public void setPlaca(String placa) {this.placa = placa;}
 	
 	public int getPuertas() {return puertas;}
-	public void setPuertas(int x) {this.puertas = x;}
+	public void setPuertas(int puertas) {this.puertas = puertas;}
 	
 	public float getVelocidadMaxima() {return velocidadMaxima;}
-	public void setVelocidadMaxima(float x) {this.velocidadMaxima = x;}
+	public void setVelocidadMaxima(int velocidadMaxima) {this.velocidadMaxima = velocidadMaxima;}
 
 	public String getNombre() {return nombre;}
-	public void setNombre(String x) {this.nombre = x;}
+	public void setNombre(String nombre) {this.nombre = nombre;}
 	
 	public float getPrecio() {return precio;}
-	public void setPrecio(float x) {this.precio = x;}
+	public void setPrecio(int precio) {this.precio = precio;}
 	
 	public float getPeso() {return peso;}
-	public void setPeso(float x) {this.peso = x;}
+	public void setPeso(float peso) {this.peso = peso;}
 	
 	public String getTraccion() {return traccion;}
-	public void setTraccion(String x) {this.traccion = x;}
+	public void setTraccion(String traccion) {this.traccion = traccion;}
 	
 	public Fabricante getFabricante() {return fabricante;}
-	public void setFabricante(Fabricante x) {this.fabricante = x;}
+	public void setFabricante(Fabricante fabricante) {this.fabricante = fabricante;}
 	
-	public static int getCantidadVehiculos(){return CantidadVehiculos;}
-	public static void setCantidadVehiculos(int x) {CantidadVehiculos=x;}
+	public static int getCantidadVehiculos(){return vehiculos;}
+	public static void setCantidadVehiculos(int vehiculos) {Vehiculo.vehiculos=vehiculos;}
 	
+	public String vehiculosPorTipo() {
+		return "Automoviles: " + Automovil.getAutomoviles() + "\nCamionetas: " + Camioneta.getCamionetas() + "\nCamiones: " + Camion.getCamiones();
+	}
 	
 }
